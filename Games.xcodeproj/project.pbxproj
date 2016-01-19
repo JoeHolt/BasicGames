@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6940DFF51C4DE7E000A1AB3F /* WarGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6940DFF41C4DE7E000A1AB3F /* WarGame.swift */; };
+		6940DFF71C4DE82B00A1AB3F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6940DFF61C4DE82B00A1AB3F /* Player.swift */; };
 		69699F641C4DC0CC00508478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F631C4DC0CC00508478 /* AppDelegate.swift */; };
-		69699F661C4DC0CC00508478 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F651C4DC0CC00508478 /* ViewController.swift */; };
+		69699F661C4DC0CC00508478 /* GameSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F651C4DC0CC00508478 /* GameSelectVC.swift */; };
 		69699F691C4DC0CC00508478 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69699F671C4DC0CC00508478 /* Main.storyboard */; };
 		69699F6B1C4DC0CC00508478 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69699F6A1C4DC0CC00508478 /* Assets.xcassets */; };
 		69699F6E1C4DC0CC00508478 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69699F6C1C4DC0CC00508478 /* LaunchScreen.storyboard */; };
 		69699F791C4DC0CC00508478 /* GamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F781C4DC0CC00508478 /* GamesTests.swift */; };
 		69699F841C4DC0CC00508478 /* GamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F831C4DC0CC00508478 /* GamesUITests.swift */; };
+		69699F921C4DC52F00508478 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F911C4DC52F00508478 /* Game.swift */; };
+		69699F951C4DD54A00508478 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F941C4DD54A00508478 /* Card.swift */; };
+		69699F971C4DD55700508478 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F961C4DD55700508478 /* Deck.swift */; };
+		69699F9A1C4DDA6300508478 /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F991C4DDA6300508478 /* PlayingCard.swift */; };
+		69699F9C1C4DDA8300508478 /* PlayingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6940DFF41C4DE7E000A1AB3F /* WarGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarGame.swift; sourceTree = "<group>"; };
+		6940DFF61C4DE82B00A1AB3F /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		69699F601C4DC0CC00508478 /* Games.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Games.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69699F631C4DC0CC00508478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		69699F651C4DC0CC00508478 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		69699F651C4DC0CC00508478 /* GameSelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectVC.swift; sourceTree = "<group>"; };
 		69699F681C4DC0CC00508478 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		69699F6A1C4DC0CC00508478 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69699F6D1C4DC0CC00508478 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +56,11 @@
 		69699F7F1C4DC0CC00508478 /* GamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69699F831C4DC0CC00508478 /* GamesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesUITests.swift; sourceTree = "<group>"; };
 		69699F851C4DC0CC00508478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69699F911C4DC52F00508478 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		69699F941C4DD54A00508478 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		69699F961C4DD55700508478 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		69699F991C4DDA6300508478 /* PlayingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
+		69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +111,11 @@
 		69699F621C4DC0CC00508478 /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				69699F631C4DC0CC00508478 /* AppDelegate.swift */,
-				69699F651C4DC0CC00508478 /* ViewController.swift */,
+				69699F651C4DC0CC00508478 /* GameSelectVC.swift */,
 				69699F671C4DC0CC00508478 /* Main.storyboard */,
 				69699F6A1C4DC0CC00508478 /* Assets.xcassets */,
-				69699F6C1C4DC0CC00508478 /* LaunchScreen.storyboard */,
-				69699F6F1C4DC0CC00508478 /* Info.plist */,
+				69699F981C4DD56500508478 /* Model */,
+				69699F931C4DC53800508478 /* Extra */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -123,6 +136,30 @@
 				69699F851C4DC0CC00508478 /* Info.plist */,
 			);
 			path = GamesUITests;
+			sourceTree = "<group>";
+		};
+		69699F931C4DC53800508478 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				69699F6C1C4DC0CC00508478 /* LaunchScreen.storyboard */,
+				69699F631C4DC0CC00508478 /* AppDelegate.swift */,
+				69699F6F1C4DC0CC00508478 /* Info.plist */,
+			);
+			name = Extra;
+			sourceTree = "<group>";
+		};
+		69699F981C4DD56500508478 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				69699F911C4DC52F00508478 /* Game.swift */,
+				6940DFF61C4DE82B00A1AB3F /* Player.swift */,
+				69699F941C4DD54A00508478 /* Card.swift */,
+				69699F961C4DD55700508478 /* Deck.swift */,
+				69699F991C4DDA6300508478 /* PlayingCard.swift */,
+				69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */,
+				6940DFF41C4DE7E000A1AB3F /* WarGame.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +296,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69699F661C4DC0CC00508478 /* ViewController.swift in Sources */,
+				69699F661C4DC0CC00508478 /* GameSelectVC.swift in Sources */,
+				69699F921C4DC52F00508478 /* Game.swift in Sources */,
+				69699F971C4DD55700508478 /* Deck.swift in Sources */,
 				69699F641C4DC0CC00508478 /* AppDelegate.swift in Sources */,
+				6940DFF51C4DE7E000A1AB3F /* WarGame.swift in Sources */,
+				69699F9A1C4DDA6300508478 /* PlayingCard.swift in Sources */,
+				69699F951C4DD54A00508478 /* Card.swift in Sources */,
+				6940DFF71C4DE82B00A1AB3F /* Player.swift in Sources */,
+				69699F9C1C4DDA8300508478 /* PlayingCardDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +444,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Games/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,7 +457,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Games/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -485,6 +533,7 @@
 				69699F8A1C4DC0CC00508478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69699F8B1C4DC0CC00508478 /* Build configuration list for PBXNativeTarget "GamesTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +542,7 @@
 				69699F8D1C4DC0CC00508478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69699F8E1C4DC0CC00508478 /* Build configuration list for PBXNativeTarget "GamesUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +551,7 @@
 				69699F901C4DC0CC00508478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
