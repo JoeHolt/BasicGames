@@ -12,5 +12,13 @@ class Player: NSObject {
     var name = String()
     var color = UIColor()
     var cards = [Card]()
+    var cardsLeft: Int {
+        get {
+            return cards.count
+        }
+        set {
+            self.cardsLeft = newValue
+        }
+    }
 
 }

@@ -21,10 +21,6 @@ class GameSelectVC: UITableViewController {
         let war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: 0)
         games.append(war)
         
-        var card = PlayingCard()
-        card.suit = "♦︎"
-        card.rank = "1"
-        print(card.contents)
     }
 
     override func didReceiveMemoryWarning() {

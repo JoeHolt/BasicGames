@@ -18,7 +18,7 @@ class PlayingCard: Card {
     
     var rank = String() {
         didSet {
-            if !ranks.contains(rank) {
+            if !PlayingCard.ranks.contains(rank) {
                 rank = "ERROR"
                 NSLog("Card ranks is not valid")
             }
@@ -26,7 +26,7 @@ class PlayingCard: Card {
     }
     var suit = String() {
         didSet {
-            if !suits.contains(suit) {
+            if !PlayingCard.suits.contains(suit) {
                 suit = "ERROR"
                 NSLog("Card suit is not valid")
             }
