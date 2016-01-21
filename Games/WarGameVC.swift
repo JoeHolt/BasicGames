@@ -42,6 +42,7 @@ class WarGameVC: UIViewController {
     @IBAction func player1ButtonTapped(sender: UIButton) {
         if player1.cardsLeft > 0 {
             flipCard(sender, player: player1)
+            sender.userInteractionEnabled = false
             flipOpponentCards(){
                 () in
                 self.findWinner()
@@ -112,6 +113,7 @@ class WarGameVC: UIViewController {
                         for card in self.cards {
                             card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
                             card.setTitle("", forState: .Normal)
+                            self.Card0.userInteractionEnabled = true
                         }
                 })
             })
