@@ -21,16 +21,17 @@ class Deck: NSObject {
     func addCard(card: Card) {
         cards.append(card)
     }
+    func addCards(cards: [Card]) {
+        for card in cards {
+            addCard(card)
+        }
+    }
     
     func drawRandomCard() -> Card {
         let rand = arc4random_uniform(UInt32(cards.count))
         let randomCard = cards[Int(rand)]
         cards.removeAtIndex(Int(rand))
         return randomCard
-    }
-    
-    
-    
-   
+    }   
 
 }

@@ -11,16 +11,16 @@ import Foundation
 
 class WarGame: NSObject {
     var cardDeck = PlayingCardDeck()
-    init(players: [Player], deck: Deck) {
+    init(players: [WarPlayer], deck: Deck) {
         let cardsPerPlayer = deck.cards.count/players.count
         for player in players {
             for _ in 0..<cardsPerPlayer {
-                player.cards.append(deck.drawRandomCard())
+                player.personalDeck.cards.append(deck.drawRandomCard())
             }
         }
     }
     func highestCardValue(cards: [PlayingCard]) -> [PlayingCard] {
-        var currentHighest = [PlayingCard]()
+        var currentHighest = [cards[0]]
         for card in cards {
             if card.rank > currentHighest[0].rank {
                 currentHighest.removeAll()

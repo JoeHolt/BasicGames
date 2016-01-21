@@ -22,6 +22,8 @@
 		69699F971C4DD55700508478 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F961C4DD55700508478 /* Deck.swift */; };
 		69699F9A1C4DDA6300508478 /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F991C4DDA6300508478 /* PlayingCard.swift */; };
 		69699F9C1C4DDA8300508478 /* PlayingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */; };
+		69CEFA911C5088370062DD61 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CEFA901C5088370062DD61 /* Helper.swift */; };
+		69CEFA931C508C770062DD61 /* WarPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CEFA921C508C770062DD61 /* WarPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		69699F961C4DD55700508478 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		69699F991C4DDA6300508478 /* PlayingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
 		69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCardDeck.swift; sourceTree = "<group>"; };
+		69CEFA901C5088370062DD61 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		69CEFA921C508C770062DD61 /* WarPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 			children = (
 				69699F651C4DC0CC00508478 /* GameSelectVC.swift */,
 				690D34EF1C4F44100089F8ED /* WarGameVC.swift */,
+				69CEFA901C5088370062DD61 /* Helper.swift */,
 				69699F671C4DC0CC00508478 /* Main.storyboard */,
 				69699F6A1C4DC0CC00508478 /* Assets.xcassets */,
 				69699F981C4DD56500508478 /* Model */,
@@ -161,6 +166,7 @@
 				69699F991C4DDA6300508478 /* PlayingCard.swift */,
 				69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */,
 				6940DFF41C4DE7E000A1AB3F /* WarGame.swift */,
+				69CEFA921C508C770062DD61 /* WarPlayer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -299,6 +305,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69CEFA911C5088370062DD61 /* Helper.swift in Sources */,
+				69CEFA931C508C770062DD61 /* WarPlayer.swift in Sources */,
 				69699F661C4DC0CC00508478 /* GameSelectVC.swift in Sources */,
 				69699F921C4DC52F00508478 /* Game.swift in Sources */,
 				69699F971C4DD55700508478 /* Deck.swift in Sources */,

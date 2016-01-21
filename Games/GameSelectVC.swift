@@ -9,10 +9,6 @@
 import UIKit
 
 class GameSelectVC: UITableViewController {
-
-    @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var cellHeading: UILabel!
-    @IBOutlet weak var cellSubHeading: UILabel!
     
     var games = [Game]()
     

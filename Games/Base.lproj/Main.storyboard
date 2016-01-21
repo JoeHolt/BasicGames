@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uyR-Zs-teE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a4u-M7-8ak">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -90,12 +90,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fo-PV-KFu">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="290"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzz-yv-uN6">
-                                                        <rect key="frame" x="79.5" y="20" width="141" height="250"/>
+                                                    <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzz-yv-uN6">
+                                                        <rect key="frame" x="79" y="20" width="141" height="250"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="fzz-yv-uN6" secondAttribute="height" multiplier="175:311" id="o5A-gf-xD6"/>
                                                         </constraints>
-                                                        <state key="normal" image="WarCard"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <state key="normal" backgroundImage="WarCard">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -109,12 +112,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCz-zF-euD">
                                                 <rect key="frame" x="300" y="0.0" width="300" height="290"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hi-Vw-6ZP">
-                                                        <rect key="frame" x="79.5" y="20" width="141" height="250"/>
+                                                    <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hi-Vw-6ZP">
+                                                        <rect key="frame" x="79" y="20" width="141" height="250"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="3hi-Vw-6ZP" secondAttribute="height" multiplier="175:311" id="izN-tI-gj5"/>
                                                         </constraints>
-                                                        <state key="normal" image="WarCard"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <state key="normal" backgroundImage="WarCard">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -132,15 +138,18 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdd-ub-1t5">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="290"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvS-gV-jlH">
-                                                        <rect key="frame" x="80" y="20" width="140.5" height="250"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvS-gV-jlH">
+                                                        <rect key="frame" x="79.5" y="20" width="141" height="250"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gvS-gV-jlH" secondAttribute="height" multiplier="175:311" id="LIF-Ox-knN"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                                        <state key="normal" image="WarCard">
-                                                            <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <state key="normal" backgroundImage="WarCard">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="player1ButtonTapped:" destination="a4u-M7-8ak" eventType="touchUpInside" id="OMU-qR-qvF"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,12 +163,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHE-zZ-KAl">
                                                 <rect key="frame" x="300" y="0.0" width="300" height="290"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2H-U5-bAc">
+                                                    <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2H-U5-bAc">
                                                         <rect key="frame" x="79" y="20" width="141" height="250"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="f2H-U5-bAc" secondAttribute="height" multiplier="175:311" id="UWM-Zj-E9P"/>
                                                         </constraints>
-                                                        <state key="normal" image="WarCard"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <state key="normal" backgroundImage="WarCard">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,10 +200,14 @@
                         <outlet property="BGView2" destination="1fo-PV-KFu" id="AeY-Du-V1J"/>
                         <outlet property="BGView3" destination="gCz-zF-euD" id="AWZ-9H-1Jr"/>
                         <outlet property="BGView4" destination="pHE-zZ-KAl" id="ecx-5U-Nh5"/>
-                        <outletCollection property="cards" destination="fzz-yv-uN6" id="684-Nh-msd"/>
-                        <outletCollection property="cards" destination="3hi-Vw-6ZP" id="GnY-aM-9MW"/>
-                        <outletCollection property="cards" destination="f2H-U5-bAc" id="WF1-e6-LDp"/>
-                        <outletCollection property="cards" destination="gvS-gV-jlH" id="yxH-ci-IS8"/>
+                        <outlet property="Card0" destination="gvS-gV-jlH" id="G8E-LG-BNw"/>
+                        <outlet property="Card1" destination="fzz-yv-uN6" id="cWQ-wG-bfv"/>
+                        <outlet property="Card2" destination="3hi-Vw-6ZP" id="trE-aw-lkW"/>
+                        <outlet property="Card3" destination="f2H-U5-bAc" id="dJi-eR-pe5"/>
+                        <outletCollection property="cards" destination="fzz-yv-uN6" collectionClass="NSMutableArray" id="684-Nh-msd"/>
+                        <outletCollection property="cards" destination="3hi-Vw-6ZP" collectionClass="NSMutableArray" id="GnY-aM-9MW"/>
+                        <outletCollection property="cards" destination="f2H-U5-bAc" collectionClass="NSMutableArray" id="WF1-e6-LDp"/>
+                        <outletCollection property="cards" destination="gvS-gV-jlH" collectionClass="NSMutableArray" id="yxH-ci-IS8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="STG-fN-n5x" userLabel="First Responder" sceneMemberID="firstResponder"/>
