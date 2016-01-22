@@ -19,4 +19,10 @@ class WarPlayer: Player {
         }
     }
     var currentCard = PlayingCard()
+    var UICard = UIButton()
+    
+    init(name: String, UICard: UIButton) {
+        super.init(name: name)
+        self.UICard = UICard
+    }
 }

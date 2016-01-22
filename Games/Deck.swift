@@ -27,11 +27,15 @@ class Deck: NSObject {
         }
     }
     
-    func drawRandomCard() -> Card {
-        let rand = arc4random_uniform(UInt32(cards.count))
-        let randomCard = cards[Int(rand)]
-        cards.removeAtIndex(Int(rand))
-        return randomCard
+    func drawRandomCard() -> Card? {
+        if cards.count > 0 {
+            let rand = arc4random_uniform(UInt32(cards.count))
+            let randomCard = cards[Int(rand)]
+            cards.removeAtIndex(Int(rand))
+            return randomCard
+        } else {
+            return nil
+        }
     }   
 
 }

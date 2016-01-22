@@ -31,5 +31,19 @@ class WarGame: NSObject {
         }
         return currentHighest
     }
+    func checkForGameWinner(players: [WarPlayer]) -> WarPlayer? {
+        var winners = [WarPlayer]()
+        for player in players {
+            if player.personalDeck.cards.count != 0 {
+                //They continue on
+                winners.append(player)
+            }
+        }
+        if winners.count == 1 {
+            return winners[0]
+        } else {
+            return nil
+        }
+    }
 
 }

@@ -7,6 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
 func secondsToDispatchTime(timeSeconds delay: Double) -> dispatch_time_t {
     return dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+}
+func makeSimpleAlertView(title: String, message: String, target: UIViewController) {
+    let ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    ac.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+    target.presentViewController(ac, animated: true, completion: nil)
 }

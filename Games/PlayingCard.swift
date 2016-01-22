@@ -10,11 +10,8 @@ import UIKit
 
 class PlayingCard: Card {
     
-    func validSuits() -> [String] {
-        return ["♠︎","♣︎","♥︎","♦︎"]
-    }
     static var ranks = ["1","2","3","4","5","6","7","8","9","10","J","Q","K"]
-    static var suits = ["♠︎","♣︎","♥︎","♦︎"]
+    static var suits = ["♠️","♣️","♥️","♦️"]
     
     var rank = String() {
         didSet {
