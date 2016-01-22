@@ -15,7 +15,7 @@ class WarGame: NSObject {
         let cardsPerPlayer = deck.cards.count/players.count
         for player in players {
             for _ in 0..<cardsPerPlayer {
-                player.personalDeck.cards.append(deck.drawRandomCard())
+                player.personalDeck.cards.append(deck.drawRandomCard()!)
             }
         }
     }
