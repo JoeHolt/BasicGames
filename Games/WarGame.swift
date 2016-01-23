@@ -19,17 +19,24 @@ class WarGame: NSObject {
             }
         }
     }
-    func highestCardValue(cards: [PlayingCard]) -> [PlayingCard] {
-        var currentHighest = [cards[0]]
-        for card in cards {
-            if card.rank > currentHighest[0].rank {
-                currentHighest.removeAll()
-                currentHighest.append(card) //Clears array and adds highest value
-            } else if card.rank == currentHighest[0].rank {
-                currentHighest.append(card) //If there is 2 cards of highest rank both are returned
+    func roundWinner(players: [WarPlayer]) -> [WarPlayer] {
+        var currentHighestPlayer: [WarPlayer] = [players[0]]
+        for player in players {
+            if rankOfCard(player.currentCard) > rankOfCard(currentHighestPlayer[0].currentCard) {
+                currentHighestPlayer.removeAll()
+                currentHighestPlayer.append(player)
+            } else if rankOfCard(player.currentCard) == rankOfCard(currentHighestPlayer[0].currentCard) {
+                if player != players[0] {
+                    //Because the intial highest card is the first in array, this fixes function thinking there is a war when there is not 
+                    currentHighestPlayer.append(player)
+                }
             }
         }
-        return currentHighest
+        return currentHighestPlayer
+    }
+    private func rankOfCard(card: PlayingCard) -> Int {
+        //Higher the rank, better the card
+        return PlayingCard.ranks.indexOf(card.rank)!
     }
     func checkForGameWinner(players: [WarPlayer]) -> WarPlayer? {
         var winners = [WarPlayer]()

@@ -95,7 +95,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="fzz-yv-uN6" secondAttribute="height" multiplier="175:311" id="o5A-gf-xD6"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="70"/>
                                                         <state key="normal" backgroundImage="WarCard">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -117,7 +117,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="3hi-Vw-6ZP" secondAttribute="height" multiplier="175:311" id="izN-tI-gj5"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="70"/>
                                                         <state key="normal" backgroundImage="WarCard">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -143,7 +143,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gvS-gV-jlH" secondAttribute="height" multiplier="175:311" id="LIF-Ox-knN"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="70"/>
                                                         <state key="normal" backgroundImage="WarCard">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -168,7 +168,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="f2H-U5-bAc" secondAttribute="height" multiplier="175:311" id="UWM-Zj-E9P"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="80"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="70"/>
                                                         <state key="normal" backgroundImage="WarCard">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -216,10 +216,10 @@
             </objects>
             <point key="canvasLocation" x="1861" y="-382"/>
         </scene>
-        <!--View Controller-->
+        <!--War DetailVC-->
         <scene sceneID="3m9-v0-qge">
             <objects>
-                <viewController id="qca-IB-htd" sceneMemberID="viewController">
+                <viewController id="qca-IB-htd" customClass="WarDetailVC" customModule="Games" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eSO-cg-slR"/>
                         <viewControllerLayoutGuide type="bottom" id="Slg-sv-rrP"/>
@@ -227,12 +227,12 @@
                     <view key="view" contentMode="scaleToFill" id="rkO-Dt-jrx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xai-N2-UV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2507" y="-382"/>
+            <point key="canvasLocation" x="2603" y="-382"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mmh-jb-aGt">

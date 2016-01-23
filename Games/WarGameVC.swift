@@ -31,48 +31,43 @@ class WarGameVC: UIViewController {
     var BGViews = [UIView]()
     var players = [WarPlayer]()
     var deck = PlayingCardDeck()
-    var game: WarGame!   //Initated Later
+    var game: WarGame!
     var player1: WarPlayer! //User, Card Tag 0
     var computer1: WarPlayer! //Computer 1, Card Tag 1
     var computer2: WarPlayer! //Computer 2, Card Tag 2
     var computer3: WarPlayer! //Computer 3, Card Tag 3
-    var timer = NSTimer()
     var idleTime = Double()
     var playedCards = [PlayingCard]()
-    var rounds: Int = 0
+    var playersAtWar = [WarPlayer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "War!"
+        navigationItem.leftBarButtonItem?.title = ""
         setUp()
 
     }
     
     @IBAction func player1ButtonTapped(sender: UIButton) {
-        
+        performSegueWithIdentifier("warDetailSegue", sender: self)
         if player1.cardsLeft > 0 {
-            flipCard(player1) //Flips user card
             sender.userInteractionEnabled = false
-            flipOpponentCards(){  //Flips opponents cards
+            flipCardsUI(){
                 () in
                 self.findRoundWinner()  //Finds winner of wound
             }
         }
     }
     
-    func flipOpponentCards(completion: () -> Void) {
-        dispatch_after(secondsToDispatchTime(timeSeconds: idleTime), dispatch_get_main_queue()) {
-            self.flipCard(self.computer1)
-        }
-        dispatch_after(secondsToDispatchTime(timeSeconds: (idleTime * 2)), dispatch_get_main_queue()) {
-            self.flipCard(self.computer2)
-        }
-        dispatch_after(secondsToDispatchTime(timeSeconds: (idleTime * 3)), dispatch_get_main_queue()) {
-            self.flipCard(self.computer3)
-        }
-        dispatch_after(secondsToDispatchTime(timeSeconds: (idleTime * 3.7)), dispatch_get_main_queue()) {
-            completion()
+    func flipCardsUI(completion: () -> Void) {
+        for i in 0..<players.count {
+            var delay = (idleTime + Double(Double(i - 1) * 0.5))
+            if i == 0 { delay = 0 } //If it is the first card, flip imideataly
+            dispatch_after(GSDSeconds(seconds: delay), dispatch_get_main_queue()) {
+                self.flipCardHelper(self.players[i])
+                if i == (self.players.count - 1) { completion() }
+            }
         }
     }
     
@@ -82,11 +77,12 @@ class WarGameVC: UIViewController {
         setUpCards()
     }
     
-    func flipCard(player: WarPlayer) {
+    func flipCardHelper(player: WarPlayer) {
         if let card = player.personalDeck.drawRandomCard() {
             player.currentCard = card as! PlayingCard
             player.UICard.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
             player.UICard.setTitle(String(card.contents), forState: .Normal)
+            print(card.contents)
         }
     }
     
@@ -95,29 +91,26 @@ class WarGameVC: UIViewController {
         for player in players {
             playedCards.append(player.currentCard)
         }
-        let higgestCard = game.highestCardValue(playedCards)
-        let index = playedCards.indexOf(higgestCard[0])
-        switch index! {
-        case 0:
-            player1.personalDeck.addCards(playedCards)
-            roundWinnerUI(player1)
-        case 1:
-            computer1.personalDeck.addCards(playedCards)
-            roundWinnerUI(computer1)
-        case 2:
-            computer2.personalDeck.addCards(playedCards)
-            roundWinnerUI(computer2)
-        case 3:
-            computer3.personalDeck.addCards(playedCards)
-            roundWinnerUI(computer3)
-        default:
-            print("Error")
+        let roundWinner: [WarPlayer] = game.roundWinner(players)
+        if roundWinner.count == 1 {
+            //One round winner
+            roundWinner[0].personalDeck.addCards(playedCards)
+            cardExpandAM(roundWinner[0])
+        } else if roundWinner.count > 1 {
+            //War
+            playersAtWar = roundWinner
+            performSegueWithIdentifier("warDetailSegue", sender: self)
+            print("War initiated with players \(roundWinner)")
+        } else {
+            //Error
+            print("findRoundWinner: Error")
         }
+        
         playedCards.removeAll()
         checkForGameWinner()
     }
     
-    func roundWinnerUI(player: WarPlayer) {
+    func cardExpandAM(player: WarPlayer) {
         //Updates UI to show winner
         UIView.animateWithDuration(idleTime/1.5, delay: 0.0, options: .CurveEaseIn, animations: {
             player.UICard.transform = CGAffineTransformMakeScale(1.1, 1.1)
@@ -204,7 +197,22 @@ class WarGameVC: UIViewController {
     }
 
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "warDetailSegue" {
+            let destinationVC = segue.destinationViewController as! WarDetailVC
+            destinationVC.players = playersAtWar
+        }
     }
 
 }
+
+/* To Do:
+1.) Make progran handle wars.
+2.) Find way to show cards in each deck(Add number inbetween sword in deck)
+3.) More animations(Card flip, and move cards when other decks are emtied)
+4.) General bug fixes and UI enhancments
+5.) New game screen icon
+*/

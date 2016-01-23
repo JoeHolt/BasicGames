@@ -16,6 +16,7 @@ class GameSelectVC: UITableViewController {
         super.viewDidLoad()
         let war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: 0)
         games.append(war)
+        title = "Choose a Game"
         
     }
 

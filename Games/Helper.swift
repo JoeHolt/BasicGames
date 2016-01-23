@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-func secondsToDispatchTime(timeSeconds delay: Double) -> dispatch_time_t {
+func GSDSeconds(seconds delay: Double) -> dispatch_time_t {
     return dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
 }
 func makeSimpleAlertView(title: String, message: String, target: UIViewController) {
