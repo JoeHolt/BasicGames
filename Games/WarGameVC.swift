@@ -49,8 +49,12 @@ class WarGameVC: UIViewController {
 
     }
     
+    var a = 0
     @IBAction func player1ButtonTapped(sender: UIButton) {
-        performSegueWithIdentifier("warDetailSegue", sender: self)
+        if a == 1 {
+            performSegueWithIdentifier("warDetailSegue", sender: self)
+        }
+        a++
         if player1.cardsLeft > 0 {
             sender.userInteractionEnabled = false
             flipCardsUI(){
@@ -142,7 +146,7 @@ class WarGameVC: UIViewController {
                 
                 
             } else {
-                if let winner = game.checkForGameWinner(players) {
+                if let winner = WarGame.checkForGameWinner(players) {
                     if winner == player1 {
                         let ac = UIAlertController(title: "You Win!", message: "You Won! You you like to play again?", preferredStyle: UIAlertControllerStyle.Alert)
                         ac.addAction(UIAlertAction(title: "Cancle", style: .Cancel, handler: nil))
@@ -203,7 +207,8 @@ class WarGameVC: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "warDetailSegue" {
             let destinationVC = segue.destinationViewController as! WarDetailVC
-            destinationVC.players = playersAtWar
+            destinationVC.players = players //playersAtWar
+            destinationVC.game = game
         }
     }
 
