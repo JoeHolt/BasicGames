@@ -10,6 +10,7 @@ import UIKit
 
 class WarPlayer: Player {
     var personalDeck = Deck()
+    var tag = Int()
     var cardsLeft: Int {
         get {
             return personalDeck.cards.count
@@ -20,9 +21,12 @@ class WarPlayer: Player {
     }
     var currentCard = PlayingCard()
     var UICard = UIButton()
-    
-    init(name: String, UICard: UIButton) {
+    var faceDownWarCards = [PlayingCard]()
+    var topWarCard = PlayingCard()
+    var bottomWarCard = PlayingCard()
+    init(name: String, UICard: UIButton, tag: Int) {
         super.init(name: name)
         self.UICard = UICard
+        self.tag = tag
     }
 }

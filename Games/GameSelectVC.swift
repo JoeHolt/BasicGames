@@ -11,13 +11,14 @@ import UIKit
 class GameSelectVC: UITableViewController {
     
     var games = [Game]()
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
+        initalLoad()
         super.viewDidLoad()
-        let war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: 0)
+        let war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: defaults.integerForKey("WarWins"))
         games.append(war)
         title = "Choose a Game"
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +29,17 @@ class GameSelectVC: UITableViewController {
     func setUp() {
         navigationController?.navigationBar.tintColor = UIColor.purpleColor()
         title = "Choose a Game!"
+    }
+    
+    func initalLoad() {
+        let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
+        if !firstRun {
+            defaults.setInteger(0, forKey: "WarWins")
+            
+            
+            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstRun")
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
