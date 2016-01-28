@@ -63,11 +63,144 @@
                     <navigationItem key="navigationItem" id="KaW-C4-c13"/>
                     <connections>
                         <segue destination="a4u-M7-8ak" kind="showDetail" identifier="warSegue" action="showViewController:sender:" id="Zqe-eo-vFh"/>
+                        <segue destination="k4c-jG-ujx" kind="show" identifier="settingsSegue" id="tBe-d7-w0y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfC-si-ROl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1153" y="273"/>
+        </scene>
+        <!--SettingsVC-->
+        <scene sceneID="NGh-yN-X8e">
+            <objects>
+                <tableViewController id="k4c-jG-ujx" customClass="SettingsVC" customModule="Games" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="tau-le-ed1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="War Settings" id="DMx-Wp-sjH">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="w8l-82-82Y">
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="13" contentMode="left" tableViewCell="w8l-82-82Y" id="6fj-hK-1cE">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wait Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9m-zt-3Bs">
+                                                    <rect key="frame" x="10" y="11" width="77" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BR1-C5-tnB">
+                                                    <rect key="frame" x="487" y="13.5" width="100" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="zWi-Zu-Taf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" keyboardAppearance="alert"/>
+                                                    <connections>
+                                                        <action selector="warGameIdleTV:" destination="k4c-jG-ujx" eventType="editingDidEnd" id="kil-xA-mjo"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BR1-C5-tnB" firstAttribute="centerY" secondItem="6fj-hK-1cE" secondAttribute="centerY" id="CVT-ex-M15"/>
+                                                <constraint firstItem="BR1-C5-tnB" firstAttribute="trailing" secondItem="6fj-hK-1cE" secondAttribute="trailingMargin" constant="-5" id="WwG-1L-ndP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uo3-ZS-okw">
+                                        <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="uo3-ZS-okw" id="Oc3-pE-v8V">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMw-zv-xHO">
+                                                    <rect key="frame" x="8" y="11" width="37" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="S6g-iw-Gu1" kind="show" id="PUd-jZ-7WK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="k4c-jG-ujx" id="LML-Ew-P1Z"/>
+                            <outlet property="delegate" destination="k4c-jG-ujx" id="6nq-sq-3RN"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="warContentCard" destination="Oc3-pE-v8V" id="6oV-9H-ldb"/>
+                        <outlet property="warIdleTimeTV" destination="BR1-C5-tnB" id="3CL-Yk-syY"/>
+                        <outletCollection property="nonSelectableCells" destination="w8l-82-82Y" collectionClass="NSMutableArray" id="M4N-qT-O0C"/>
+                        <outletCollection property="selectableCells" destination="uo3-ZS-okw" collectionClass="NSMutableArray" id="YK0-oC-gBP"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pug-js-MqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1861" y="805"/>
+        </scene>
+        <!--Settings DetailVC-->
+        <scene sceneID="OKu-ke-zl7">
+            <objects>
+                <tableViewController id="S6g-iw-Gu1" customClass="SettingsDetailVC" customModule="Games" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pxl-cb-uEP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cardCell" rowHeight="83" id="QT3-Q3-8XN">
+                                <rect key="frame" x="0.0" y="92" width="600" height="83"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QT3-Q3-8XN" id="FuV-ou-s1w">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="82.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lfG-Ly-A9B">
+                                            <rect key="frame" x="13" y="12" width="58.5" height="58.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="lfG-Ly-A9B" secondAttribute="height" multiplier="1:1" id="LQS-yf-Ozg"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG5-dF-pRP">
+                                            <rect key="frame" x="79" y="12" width="513" height="58.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lfG-Ly-A9B" firstAttribute="top" secondItem="FuV-ou-s1w" secondAttribute="topMargin" constant="4" id="8a7-1P-How"/>
+                                        <constraint firstItem="cG5-dF-pRP" firstAttribute="leading" secondItem="lfG-Ly-A9B" secondAttribute="trailing" constant="7.5" id="8wU-6J-X9E"/>
+                                        <constraint firstItem="lfG-Ly-A9B" firstAttribute="centerY" secondItem="FuV-ou-s1w" secondAttribute="centerY" id="Dxp-JS-hRa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cG5-dF-pRP" secondAttribute="bottom" constant="4" id="Q9Q-Tq-ZL3"/>
+                                        <constraint firstItem="cG5-dF-pRP" firstAttribute="centerY" secondItem="FuV-ou-s1w" secondAttribute="centerY" id="WJR-Xq-tnu"/>
+                                        <constraint firstItem="lfG-Ly-A9B" firstAttribute="leading" secondItem="FuV-ou-s1w" secondAttribute="leadingMargin" constant="5" id="lwB-CF-7qp"/>
+                                        <constraint firstItem="cG5-dF-pRP" firstAttribute="trailing" secondItem="FuV-ou-s1w" secondAttribute="trailingMargin" id="ovv-g4-KVd"/>
+                                        <constraint firstItem="cG5-dF-pRP" firstAttribute="top" secondItem="FuV-ou-s1w" secondAttribute="topMargin" constant="4" id="tTQ-Y6-nUh"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="S6g-iw-Gu1" id="thX-Eg-buq"/>
+                            <outlet property="delegate" destination="S6g-iw-Gu1" id="53B-EN-XKb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qQ-sF-ajh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2555" y="805"/>
         </scene>
         <!--War GameVC-->
         <scene sceneID="Ph1-AG-btH">
@@ -260,6 +393,6 @@
         <image name="WarCard" width="350" height="622"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Nss-vX-7Dl"/>
+        <segue reference="Zqe-eo-vFh"/>
     </inferredMetricsTieBreakers>
 </document>

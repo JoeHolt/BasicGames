@@ -8,13 +8,10 @@
 
 import UIKit
 
-extension Array where Element: Equatable {
-    //Simple function to remove object based on name
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
-    }
+
+
+protocol WarGameVCDelegate {
+    func warGameVCDidFinish(sender: UIViewController)
 }
 
 class WarGameVC: UIViewController {
@@ -28,7 +25,9 @@ class WarGameVC: UIViewController {
     @IBOutlet weak var Card1: UIButton! //Top Left
     @IBOutlet weak var Card2: UIButton! //Top Right
     @IBOutlet weak var Card3: UIButton! //Bottom Right
+    let defaults = NSUserDefaults.standardUserDefaults()
     var BGViews = [UIView]()
+    var delegate: WarGameVCDelegate? = nil
     var players = [WarPlayer]()
     var deck = PlayingCardDeck()
     var game: WarGame!
@@ -137,7 +136,11 @@ class WarGameVC: UIViewController {
     }
     func cardExpandFinished() {
         for card in self.cards {
-            card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
+            if card == Card0 {
+                card.setBackgroundImage(getUserCardImage(), forState: .Normal)
+            } else {
+                card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
+            }
             for player in self.players {
                 player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
             }
@@ -153,27 +156,34 @@ class WarGameVC: UIViewController {
     func checkForGameWinner() {
         for player in players {
             if player.personalDeck.cards.count == 0 {
-                player.UICard.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                if player.UICard == Card0 {
+                    player.UICard.setImage(getUserCardImage(), forState: .Normal)
+                } else {
+                    player.UICard.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                }
                 player.UICard.alpha = 0.5
+                player.UICard.userInteractionEnabled = false
+                if player.tag == 4 { // User
+                    let ac = UIAlertController(title: "You Lose!", message: "You lost! You you like to play again?", preferredStyle: UIAlertControllerStyle.Alert)
+                    ac.addAction(UIAlertAction(title: "No", style: .Cancel, handler: {
+                        UIAlertAction in
+                        self.delegate?.warGameVCDidFinish(self)
+                    }))
+                    ac.addAction(UIAlertAction(title: "Yes", style: .Default, handler: {
+                        UIAlertAction in
+                        self.restartGame()
+                    }))
+                    presentViewController(ac, animated: true, completion: nil)
+                }
             } else {
-                if let winner = WarGame.checkForGameWinner(players) {
+                if let winner = game.checkForGameWinner(players) {
                     if winner == player1 {
                         NSUserDefaults.standardUserDefaults().setInteger((NSUserDefaults.standardUserDefaults().integerForKey("WarWins") + 1), forKey: "WarWins")
                         let ac = UIAlertController(title: "You Win!", message: "You Won! Would you like to play again?", preferredStyle: UIAlertControllerStyle.Alert)
                         ac.addAction(UIAlertAction(title: "No", style: .Cancel, handler: {
                             UIAlertAction in
-                            self.navigationController?.popViewControllerAnimated(true)
-                        }))
-                        ac.addAction(UIAlertAction(title: "Yes", style: .Default, handler: {
-                            UIAlertAction in
-                            self.restartGame()
-                        }))
-                        presentViewController(ac, animated: true, completion: nil)
-                    } else {
-                        let ac = UIAlertController(title: "You Lose!", message: "You lost! You you like to play again?", preferredStyle: UIAlertControllerStyle.Alert)
-                        ac.addAction(UIAlertAction(title: "No", style: .Cancel, handler: {
-                            UIAlertAction in
-                            self.navigationController?.popViewControllerAnimated(true)
+                            self.delegate?.warGameVCDidFinish(self)
+                            
                         }))
                         ac.addAction(UIAlertAction(title: "Yes", style: .Default, handler: {
                             UIAlertAction in
@@ -187,7 +197,7 @@ class WarGameVC: UIViewController {
     }
     
     func setUp() {
-        idleTime = 0.5
+        idleTime = defaults.doubleForKey("warIdleTime")
         if players.count == 0 {
             createPlayersAndGame()
         }
@@ -196,7 +206,7 @@ class WarGameVC: UIViewController {
     
     func createPlayersAndGame() {
         //Creates and initates the game and players
-        player1 = WarPlayer(name: "Joe", UICard: Card0, tag: 0)
+        player1 = WarPlayer(name: "You", UICard: Card0, tag: 4)
         computer1 = WarPlayer(name: "Computer Phill", UICard: Card1, tag: 1)
         computer2 = WarPlayer(name: "Computer Bill", UICard:  Card2, tag: 2)
         computer3 = WarPlayer(name: "Computer Will", UICard: Card3, tag: 3)
@@ -208,6 +218,7 @@ class WarGameVC: UIViewController {
     func setUpCards() {
         //Sets up cards with values not avlible in storyboard
         BGViews = [BGView1, BGView2, BGView3, BGView4]
+        Card0.setBackgroundImage(getUserCardImage(), forState: UIControlState.Normal)
         for card in cards {
             card.layer.cornerRadius = 12.0
             card.layer.masksToBounds = true
@@ -221,12 +232,15 @@ class WarGameVC: UIViewController {
         }
     }
     
+    func getUserCardImage() -> UIImage {
+        return UIImage(named: defaults.stringForKey("userCardString")!)!
+    }
+    
     func restartGame() {
         //Quick and dirty restart method, redo if cleaning code
         BGViews = [UIView]()
         players = [WarPlayer]()
         deck = PlayingCardDeck()
-        idleTime = Double()
         playedCards = [PlayingCard]()
         playersAtWar = [WarPlayer]()
         viewDidLoad()
@@ -234,10 +248,22 @@ class WarGameVC: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "warDetailSegue" {
-            print("Segue Initiated")
+            var seguePlayers = [WarPlayer]()
             let destinationVC = segue.destinationViewController as! WarDetailVC
-            destinationVC.playersAtWar = playersAtWar
-            //playedCards.removeAll()
+            for i in 0..<playersAtWar.count {
+                let newPlayer = WarPlayer(name: playersAtWar[i].name, UICard: UIButton(), tag: 0)
+                newPlayer.name = playersAtWar[i].name
+                newPlayer.topWarCard = playersAtWar[i].topWarCard
+                newPlayer.faceDownWarCards = playersAtWar[i].faceDownWarCards
+                newPlayer.bottomWarCard = playersAtWar[i].bottomWarCard
+                newPlayer.currentCard = playersAtWar[i].currentCard
+                newPlayer.personalDeck = playersAtWar[i].personalDeck
+                seguePlayers.append(newPlayer)
+                playersAtWar[i].faceDownWarCards.removeAll()
+            }
+            //The above step should not be needed, but i have tried for hours to fix it with out and i can not find a way to make it work normally without rewrting the entire WarDetailVC(Which should be done)... but it wont further my knowlage and this works so i see no point
+            destinationVC.playersAtWar = seguePlayers
+            playedCards.removeAll()
         }
     }
     func makeAtributtedTitle(text: String, fontSize: CGFloat) -> NSMutableAttributedString {
@@ -250,5 +276,5 @@ class WarGameVC: UIViewController {
 }
 
 /* To Do:
-Done for now :D
+//Fix double war... May add later but its so unlikely to happen (I believe its like .006% at max but idk) that I doubt ill get around to fix it
 */

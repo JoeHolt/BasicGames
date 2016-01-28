@@ -9,6 +9,23 @@
 import Foundation
 import UIKit
 
+extension String {
+    func replace(string: String, replacment: String) -> String {
+        return self.stringByReplacingOccurrencesOfString(string, withString: replacment, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
+    func removeWhiteSpaces() -> String {
+        return self.replace(" ", replacment: "")
+    }
+}
+extension Array where Element: Equatable {
+    //Simple function to remove object based on name
+    mutating func removeObject(object : Generator.Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+}
+
 func GSDSeconds(seconds delay: Double) -> dispatch_time_t {
     return dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
 }

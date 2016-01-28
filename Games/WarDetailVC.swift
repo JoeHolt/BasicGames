@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol warDetailVCDelegate {
-    func warDetailVCDidFinish(sender: WarDetailVC)
-}
-
 class WarDetailVC: UIViewController {
     var playersAtWar = [WarPlayer]()
     var UICardViews = [UIView]()
@@ -26,6 +22,7 @@ class WarDetailVC: UIViewController {
     var idleTime = 0.5
     var fontSize = CGFloat()
     var multiplier = CGFloat()
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +66,10 @@ class WarDetailVC: UIViewController {
         if winner.count == 1 {
             cardExpandAnimation(winner[0])
         } else {
+            //Double war
+            for player in playersAtWar {
+                player.topWarCard = player.currentCard
+            }
             viewDidLoad()
             viewDidAppear(true)
         }
@@ -154,7 +155,6 @@ class WarDetailVC: UIViewController {
             cardButton.setAttributedTitle(title, forState: .Normal)
             cardButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             cardButton.contentVerticalAlignment = UIControlContentVerticalAlignment.Top
-            cardButton.titleLabel?.textAlignment = .Center
             cardButton.layer.cornerRadius = 10.0
             cardButton.layer.masksToBounds = true
             cardButton.userInteractionEnabled = false
@@ -173,7 +173,11 @@ class WarDetailVC: UIViewController {
                     card.setAttributedTitle(title, forState: .Normal)
                     card.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
                     card.contentVerticalAlignment = UIControlContentVerticalAlignment.Top
-                    card.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                    if player.name == "You" {
+                       card.setImage(getUserCardImage(), forState: .Normal)
+                    } else {
+                       card.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                    }
                     card.layer.cornerRadius = 10.0
                     card.layer.masksToBounds = true
                     card.userInteractionEnabled = false
@@ -183,7 +187,11 @@ class WarDetailVC: UIViewController {
                 }
             }
             let cardToShow = UIButton(frame: CGRect(x: ((cardView.bounds.width - width)/2), y: 1000, width: width, height: (width * 1.77)))
-            cardToShow.setImage(UIImage(named: "WarCard"), forState: .Normal)
+            if player.name == "You" {
+                cardToShow.setImage(getUserCardImage(), forState: .Normal)
+            } else {
+                cardToShow.setImage(UIImage(named: "WarCard"), forState: .Normal)
+            }
             cardToShow.layer.cornerRadius = 10.0
             cardToShow.layer.masksToBounds = true
             cardToShow.tag = 100 //Tag 100 = card to show
@@ -226,6 +234,10 @@ class WarDetailVC: UIViewController {
                     player.UICard.transform = CGAffineTransformMakeScale(1.0, 1.0)
                     }, completion: nil)
         })
+    }
+    
+    func getUserCardImage() -> UIImage {
+        return UIImage(named: defaults.stringForKey("userCardString")!)!
     }
 
     

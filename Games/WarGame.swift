@@ -65,7 +65,7 @@ class WarGame: NSObject {
         //Higher the rank, better the card
         return PlayingCard.ranks.indexOf(card.rank)!
     }
-    static func checkForGameWinner(players: [WarPlayer]) -> WarPlayer? {
+    func checkForGameWinner(players: [WarPlayer]) -> WarPlayer? {
         var winners = [WarPlayer]()
         for player in players {
             if player.personalDeck.cards.count != 0 {

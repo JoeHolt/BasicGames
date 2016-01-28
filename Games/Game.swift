@@ -12,11 +12,17 @@ class Game: NSObject {
     var name = String()
     var titleImage = UIImage()
     var wins = Int()
+    var segue = String()
     
-    init(name: String, titleImage: UIImage, wins: Int) {
+    init(name: String, titleImage: UIImage, wins: Int, segue: String) {
         self.name = name
         self.titleImage = titleImage
         self.wins = wins
+        self.segue = segue
+    }
+    
+    func performSegue(sender: UITableViewController) {
+        sender.performSegueWithIdentifier(segue, sender: sender)
     }
     
 }
