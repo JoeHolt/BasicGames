@@ -106,7 +106,7 @@ class WarGameVC: UIViewController {
             }
             //Find everything for war
             var warWinner = game.atWar(roundWinner)
-            warWinner[0].personalDeck.addCards(playedCards)
+            warWinner![0].personalDeck.addCards(playedCards)
             playedCards.removeAll()
             
             runAfterDelay((idleTime/1.5) * 2.1) {
@@ -142,7 +142,11 @@ class WarGameVC: UIViewController {
                 card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
             }
             for player in self.players {
-                player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+                if defaults.boolForKey("enableCardsLeft") {
+                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+                } else {
+                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("", fontSize: 20.0), forState: .Normal)
+                }
             }
             self.Card0.userInteractionEnabled = true
             for player in self.players {
@@ -228,7 +232,11 @@ class WarGameVC: UIViewController {
             //view.layer.borderWidth = 0.3
         }
         for player in players {
-            player.UICard.setAttributedTitle(makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+            if defaults.boolForKey("enableCardsLeft") {
+                player.UICard.setAttributedTitle(makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+            } else {
+                player.UICard.setAttributedTitle(makeAtributtedTitle("", fontSize: 20.0), forState: .Normal)
+            }
         }
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class Card: NSObject {
     var contents = String()
     
-    func march(otherCard: Card) -> Bool {
+    internal func march(otherCard: Card) -> Bool {
         if otherCard.contents == self.contents {
             return true
         } else {

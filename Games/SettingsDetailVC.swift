@@ -16,7 +16,7 @@ class SettingsDetailVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cards = ["War Card", "Cloud Card"]
+        cards = ["War Card", "Cloud Card", "PacMan Card"]
         
     }
 

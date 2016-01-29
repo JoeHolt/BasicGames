@@ -11,8 +11,6 @@ import UIKit
 class Player: NSObject {
     var name = String()
     var color = UIColor()
-    
-    
     init(name: String) {
         self.name = name
     }

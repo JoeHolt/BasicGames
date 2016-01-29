@@ -19,7 +19,7 @@ class WarGame: NSObject {
             }
         }
     }
-    func roundWinner(players: [WarPlayer]) -> [WarPlayer] {
+    internal func roundWinner(players: [WarPlayer]) -> [WarPlayer] {
         var currentHighestPlayer: [WarPlayer] = [players[0]]
         for player in players {
             if rankOfCard(player.currentCard) > rankOfCard(currentHighestPlayer[0].currentCard) {
@@ -34,9 +34,9 @@ class WarGame: NSObject {
         }
         return currentHighestPlayer
     }
-    func atWar(players: [WarPlayer]) -> [WarPlayer] {
+    var winnerCards = [Card]()
+    internal func atWar(players: [WarPlayer]) -> [WarPlayer]? {
         //Function to handle war between players
-        var winnerCards = [Card]()
         for player in players {
             player.topWarCard = player.currentCard
             for _ in 0..<3 {
@@ -55,17 +55,18 @@ class WarGame: NSObject {
         let winner = roundWinner(players)
         if winner.count == 1 {
             winner[0].personalDeck.addCards(winnerCards)
+            winnerCards.removeAll()
+            return roundWinner(players)
         } else {
-            print("Double war")
+            return atWar(players)
         }
-        return roundWinner(players)
         
     }
     private func rankOfCard(card: PlayingCard) -> Int {
         //Higher the rank, better the card
         return PlayingCard.ranks.indexOf(card.rank)!
     }
-    func checkForGameWinner(players: [WarPlayer]) -> WarPlayer? {
+    internal func checkForGameWinner(players: [WarPlayer]) -> WarPlayer? {
         var winners = [WarPlayer]()
         for player in players {
             if player.personalDeck.cards.count != 0 {

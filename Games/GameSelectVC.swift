@@ -12,15 +12,19 @@ class GameSelectVC: UITableViewController {
     
     var games = [Game]()
     var war: Game!
+    var ticTacToe: Game!
     var settings: Game!
     let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
-        initalLoad()
         super.viewDidLoad()
+        
+        initalLoad()
         war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: defaults.integerForKey("WarWins"), segue: "warSegue")
+        ticTacToe = Game(name: "Tic Tac Toe", titleImage: UIImage(named: "TicTacToeIcon")!, wins: defaults.integerForKey("TicTacToeWins"), segue: "ticTacToeSegue")
         settings = Game(name: "Settings", titleImage: UIImage(named: "GearIcon")!, wins: -1, segue: "settingsSegue")
         games.append(war)
+        games.append(ticTacToe)
         games.append(settings)
         title = "Choose a Game"
     }
@@ -35,8 +39,10 @@ class GameSelectVC: UITableViewController {
         if !firstRun {
             //First Run
             defaults.setInteger(0, forKey: "WarWins")
+            defaults.setInteger(0, forKey: "TicTacToeWins")
             defaults.setDouble(0.5, forKey: "warIdleTime")
             defaults.setObject("WarCard", forKey: "userCardString")
+            defaults.setBool(true, forKey: "enableCardsLeft")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstRun")
         }
     }

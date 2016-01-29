@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "WarIcon@2x.jpg",
+      "filename" : "PacManCard@2x.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "WarIcon@3x.jpg",
+      "filename" : "PacManCard@3x.jpg",
       "scale" : "3x"
     }
   ],
