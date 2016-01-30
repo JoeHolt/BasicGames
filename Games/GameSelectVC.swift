@@ -29,6 +29,12 @@ class GameSelectVC: UITableViewController {
         title = "Choose a Game"
     }
     
+    override func viewWillAppear(animated: Bool) {
+        ticTacToe.wins = defaults.integerForKey("TicTacToeWins")
+        war.wins = defaults.integerForKey("WarWins")
+        tableView.reloadData()
+    }
+    
     func setUp() {
         navigationController?.navigationBar.tintColor = UIColor.purpleColor()
         title = "Choose a Game!"

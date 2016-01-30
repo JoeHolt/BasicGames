@@ -14,12 +14,14 @@ class TicTacToeVC: UIViewController {
     @IBOutlet weak var scoreLBL1: UILabel!
     @IBOutlet weak var scoreLBL2: UILabel!
     @IBOutlet var boardButtons: [UIButton]!
+    @IBOutlet weak var boardView: UIView!
     @IBOutlet weak var topViewTopLC: NSLayoutConstraint!
     var game: TicTacToeGame!
     let player1 = TicTacToePlayer(name: "Joe", markType: .X) //User
     let player2 = TicTacToePlayer(name: "Computer", markType: .O)
     var board: TicTacToeBoard!
     var delay = Double()
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,11 +111,18 @@ class TicTacToeVC: UIViewController {
     
     private func setScoreLabel(label: UILabel, player: TicTacToePlayer, animated: Bool, completion: () -> ()) {
         if animated == true {
-            UIView.transitionWithView(label, duration: 0.75, options: UIViewAnimationOptions.TransitionFlipFromTop, animations: {
+            let oldColor = label.backgroundColor
+            UIView.transitionWithView(label, duration: 0.75, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                label.backgroundColor = UIColor.greenColor()
                 label.text = "\(player.name): \(player.wins)"
                 }, completion: {
                     (value: Bool) in
-                    completion()
+                    UIView.transitionWithView(label, duration: 0.75, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+                            label.backgroundColor = oldColor
+                        }, completion: {
+                            (value: Bool) in
+                            completion()
+                    })
             })
         } else {
             label.text = "\(player.name): \(player.wins)"
@@ -133,7 +142,17 @@ class TicTacToeVC: UIViewController {
         setUpButtons()
         game.currentPlayer = player1
         board.restart()
+        defaults.setInteger((defaults.integerForKey("TicTacToeWins") + player1.wins), forKey: "TicTacToeWins")
         updateTopLabel()
+        runAfterDelay(0.2) {
+            self.transitionBoard()
+        }
+    }
+    
+    private func transitionBoard() {
+        UIView.transitionWithView(boardView, duration: 1.0, options: UIViewAnimationOptions.TransitionCurlDown, animations: {
+            self.setUpButtons()
+            }, completion: nil)
     }
     
     private func setUp() {

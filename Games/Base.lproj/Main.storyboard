@@ -628,7 +628,7 @@
                                 <gestureRecognizers/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="LxA-35-Ur6" secondAttribute="trailing" priority="900" id="14L-tq-pTm"/>
                             <constraint firstItem="bGv-ej-oXb" firstAttribute="top" secondItem="LxA-35-Ur6" secondAttribute="bottom" priority="900" id="1Iz-iR-W4F"/>
@@ -649,6 +649,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="800"/>
                     <connections>
+                        <outlet property="boardView" destination="bGv-ej-oXb" id="Vvg-NS-Mii"/>
                         <outlet property="scoreLBL1" destination="dFN-Ft-S3W" id="SZw-0k-KH7"/>
                         <outlet property="scoreLBL2" destination="gHv-Ua-DIa" id="Pde-5u-Ikw"/>
                         <outlet property="titleLBL" destination="Rjk-IO-Nt0" id="0bF-GO-34N"/>
