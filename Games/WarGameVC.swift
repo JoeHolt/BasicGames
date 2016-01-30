@@ -60,7 +60,9 @@ class WarGameVC: UIViewController {
             sender.userInteractionEnabled = false
             flipCardsUI(){
                 () in
-                self.findRoundWinner()  //Finds winner of wound
+                runAfterDelay(0.3) {
+                    self.findRoundWinner()  //Finds winner of wound
+                }
             }
         }
     }
@@ -82,8 +84,11 @@ class WarGameVC: UIViewController {
         if let card = player.personalDeck.drawRandomCard() {
             print("Fliping: \(card.contents)")
             player.currentCard = card as! PlayingCard
-            player.UICard.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
-            player.UICard.setAttributedTitle(makeAtributtedTitle("\(card.contents)", fontSize: 70.0), forState: .Normal)
+            UIView.transitionWithView(player.UICard, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: {
+                    player.UICard.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
+                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(card.contents)", fontSize: 70.0), forState: .Normal)
+                }, completion: nil)
+            
         }
     }
     
@@ -136,24 +141,26 @@ class WarGameVC: UIViewController {
     }
     func cardExpandFinished() {
         for card in self.cards {
-            if card == Card0 {
-                card.setBackgroundImage(getUserCardImage(), forState: .Normal)
-            } else {
-                card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
-            }
-            for player in self.players {
-                if defaults.boolForKey("enableCardsLeft") {
-                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+            UIView.transitionWithView(card, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
+                if card == self.Card0 {
+                    card.setBackgroundImage(self.getUserCardImage(), forState: .Normal)
                 } else {
-                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("", fontSize: 20.0), forState: .Normal)
+                    card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
                 }
-            }
-            self.Card0.userInteractionEnabled = true
-            for player in self.players {
-                if player.personalDeck.cards.count == 0 {
-                    self.players.removeObject(player)
+                for player in self.players {
+                    if self.defaults.boolForKey("enableCardsLeft") {
+                        player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+                    } else {
+                        player.UICard.setAttributedTitle(self.makeAtributtedTitle("", fontSize: 20.0), forState: .Normal)
+                    }
                 }
-            }
+                self.Card0.userInteractionEnabled = true
+                for player in self.players {
+                    if player.personalDeck.cards.count == 0 {
+                        self.players.removeObject(player)
+                    }
+                }
+                }, completion: nil)
         }
     }
     
@@ -161,9 +168,14 @@ class WarGameVC: UIViewController {
         for player in players {
             if player.personalDeck.cards.count == 0 {
                 if player.UICard == Card0 {
-                    player.UICard.setImage(getUserCardImage(), forState: .Normal)
+                    UIView.transitionWithView(player.UICard, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
+                        player.UICard.setImage(self.getUserCardImage(), forState: .Normal)
+                        self.players.removeObject(player)
+                        }, completion: nil)
                 } else {
-                    player.UICard.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                    UIView.transitionWithView(player.UICard, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
+                        player.UICard.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                        }, completion: nil)
                 }
                 player.UICard.alpha = 0.5
                 player.UICard.userInteractionEnabled = false
@@ -211,9 +223,9 @@ class WarGameVC: UIViewController {
     func createPlayersAndGame() {
         //Creates and initates the game and players
         player1 = WarPlayer(name: "You", UICard: Card0, tag: 4)
-        computer1 = WarPlayer(name: "Computer Phill", UICard: Card1, tag: 1)
-        computer2 = WarPlayer(name: "Computer Bill", UICard:  Card2, tag: 2)
-        computer3 = WarPlayer(name: "Computer Will", UICard: Card3, tag: 3)
+        computer1 = WarPlayer(name: "Phill", UICard: Card1, tag: 1)
+        computer2 = WarPlayer(name: "Bill", UICard:  Card2, tag: 2)
+        computer3 = WarPlayer(name: "Will", UICard: Card3, tag: 3)
         
         players = [player1, computer1, computer2, computer3]
         game = WarGame(players: players, deck: deck)

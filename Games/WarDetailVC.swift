@@ -33,9 +33,9 @@ class WarDetailVC: UIViewController {
     }
     override func viewDidAppear(animated: Bool) {
         bringInCards() {
-            self.flipCards(self.cardsToShow) {
+            self.flipCards(self.cardsToShow, animate: true) {
                 self.animateForWinner() {
-                    self.flipCards(self.faceDownUICards, completion: {
+                    self.flipCards(self.faceDownUICards, animate: false, completion: {
                         runAfterDelay(1.0, block: {
                             //self.performSegueWithIdentifier("warDetailToWar", sender: self)
                             self.navigationController?.popViewControllerAnimated(true)
@@ -78,17 +78,27 @@ class WarDetailVC: UIViewController {
         }
     }
     
-    func flipCards(cards: [UIButton], completion: () -> ()) {
+    func flipCards(cards: [UIButton], animate: Bool, completion: () -> ()) {
         var i = 0
         var delay = Double()
         for card in cards {
             delay = (0.5 + Double(Double(i - 1) * 0.5))
             runAfterDelay(delay) {
-                card.setImage(nil, forState: .Normal)
-                card.layer.borderColor = UIColor.blackColor().CGColor
-                card.layer.borderWidth = 0.5
-                card.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
-                self.faceDownUICards.removeObject(card)
+                if animate {
+                UIView.transitionWithView(card, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: {
+                    card.setImage(nil, forState: .Normal)
+                    card.layer.borderColor = UIColor.blackColor().CGColor
+                    card.layer.borderWidth = 0.5
+                    card.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
+                    self.faceDownUICards.removeObject(card)
+                    }, completion: nil)
+                } else {
+                    card.setImage(nil, forState: .Normal)
+                    card.layer.borderColor = UIColor.blackColor().CGColor
+                    card.layer.borderWidth = 0.5
+                    card.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
+                    self.faceDownUICards.removeObject(card)
+                }
             }
             i++
         }

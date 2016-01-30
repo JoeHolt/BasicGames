@@ -17,8 +17,8 @@ class TicTacToeVC: UIViewController {
     @IBOutlet weak var boardView: UIView!
     @IBOutlet weak var topViewTopLC: NSLayoutConstraint!
     var game: TicTacToeGame!
-    let player1 = TicTacToePlayer(name: "Joe", markType: .X) //User
-    let player2 = TicTacToePlayer(name: "Computer", markType: .O)
+    var player1: TicTacToePlayer! //User
+    var player2: TicTacToePlayer!
     var board: TicTacToeBoard!
     var delay = Double()
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -43,7 +43,7 @@ class TicTacToeVC: UIViewController {
                 updateTopLabel()
                 if !checkWinner() {
                     //Only run if there is no winner
-                    runAfterDelay(0.5) {
+                    runAfterDelay(delay) {
                         self.computerMakeMove()
                     }
                 }
@@ -160,8 +160,10 @@ class TicTacToeVC: UIViewController {
         topViewTopLC.constant = (navigationController?.navigationBar.frame.height)! + 20
         board = TicTacToeBoard(width: 3, height: 3)
         game = TicTacToeGame(board: board)
+        player1 = TicTacToePlayer(name: (defaults.objectForKey("ticPlayer1Name") as? String)!, markType: .X)
+        player2 = TicTacToePlayer(name: (defaults.objectForKey("ticPlayer2Name") as? String)!, markType: .O)
         game.currentPlayer = player1
-        delay = 0.5
+        delay = defaults.doubleForKey("ticWaitTime")
         setUpButtons()
         setUpLabels()
     }

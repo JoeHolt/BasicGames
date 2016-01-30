@@ -47,8 +47,13 @@ class GameSelectVC: UITableViewController {
             defaults.setInteger(0, forKey: "WarWins")
             defaults.setInteger(0, forKey: "TicTacToeWins")
             defaults.setDouble(0.5, forKey: "warIdleTime")
+            defaults.setObject("Player 1", forKey: "ticPlayer1Name")
+            defaults.setObject("Player 2", forKey: "ticPlayer2Name")
+            defaults.setDouble(0.5, forKey: "ticWaitTime")
             defaults.setObject("WarCard", forKey: "userCardString")
             defaults.setBool(true, forKey: "enableCardsLeft")
+            defaults.setObject("Human Vs Computer", forKey: "ticGameType")
+            defaults.setObject("Hard", forKey: "ticDif")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstRun")
         }
     }
