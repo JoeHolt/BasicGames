@@ -24,6 +24,14 @@ extension Array where Element: Equatable {
             self.removeAtIndex(index)
         }
     }
+    func randomObject() -> Generator.Element? {
+        if self.count > 0 {
+            let randomInt: Int = Int(arc4random_uniform(UInt32(self.count)))
+            return self[randomInt]
+        } else {
+            return nil
+        }
+    }
 }
 
 func GSDSeconds(seconds delay: Double) -> dispatch_time_t {

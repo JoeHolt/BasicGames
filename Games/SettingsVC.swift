@@ -43,6 +43,7 @@ class SettingsVC: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    
     func setUp() {
         warIdleTimeTV.placeholder = String(defaults.doubleForKey("warIdleTime"))
         self.warIdleTimeTV.delegate = self

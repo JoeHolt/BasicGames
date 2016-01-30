@@ -41,30 +41,49 @@ class TicTacToeBoard: Board {
         board[index] = .N
     }
     
-    internal func emptyBoard() {
+    internal func randomEmptySpace() -> Int {
+        var indexsOfEmptySpace = [Int]()
+        var index = 0
+        for space in board {
+            if space == .N {
+                indexsOfEmptySpace.append(index)
+            }
+            index++
+        }
+        return indexsOfEmptySpace.randomObject()!
+    }
+    
+    internal func empty() {
         board.removeAll()
     }
     
-    internal func equalityAtIndexs(indexs: [Int]) -> (areEqual: Bool, ofType: BoardMarker?) {
+    internal func restart() {
+        board.removeAll()
+        for _ in 0..<self.boardArea {
+            board.append(.N)
+        }
+    }
+    
+    internal func equalityAtIndexs(indexs: [Int]) -> (Bool) {
         for i in indexs {
-            if i != indexs[0] {
+            if board[i] == .N {
+                return false
+            }
+            if board[i] != board[indexs[0]] {
                 //Not equal.
-                return (false, nil)
+                return false
             }
         }
         //Equal
-        return (true, board[indexs[0]])
+        print("equal")
+        return (true)
     }
     
     internal func boardIsFull() -> Bool {
-        var a = [BoardMarker]()
-        for i in board {
-            if i != .N { a.append(i) }
-        }
-        if a.count == board.count {
-            return true
-        } else {
+        if board.contains(.N) {
             return false
+        } else {
+            return true
         }
     }
     

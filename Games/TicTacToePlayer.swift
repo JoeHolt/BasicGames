@@ -11,7 +11,7 @@ import UIKit
 class TicTacToePlayer: Player {
     
     var marker: BoardMarker!
-    var score: Int = 0
+    var wins: Int = 0
     init(name: String, markType: BoardMarker) {
         super.init(name: name)
         self.marker = markType

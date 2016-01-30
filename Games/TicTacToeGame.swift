@@ -23,24 +23,19 @@ class TicTacToeGame: NSObject {
     internal func checkForWinner() -> BoardMarker? {
         //Finds winner using
         for wayToWin in waysToWin {
-            let winner = board.equalityAtIndexs(wayToWin)
-            if winner.areEqual {
-                return winner.ofType
+            let winner = board.equalityAtIndexs(wayToWin) //Winner is a tuple with areEqual and the type
+            if winner {
+                return board.markerForIndex(wayToWin[0])
             }
         }
         return nil
+        
     }
     
-    internal func computerChooseLocation(computerPlayer: TicTacToePlayer) -> Int? {
-        //Returns a space on the board and updates model board
-        let randomInt = Int(arc4random_uniform(8))
-        if !board.isFull {
-            if board.markerForIndex(randomInt) != .N {
-                board.setMarkerAtIndex(randomInt, markType: computerPlayer.marker)
-                return randomInt
-            }
-        }
-        return nil
+    internal func computerMakeRandomMove(computer: TicTacToePlayer) -> Int {
+        let randomSpace = board.randomEmptySpace()
+        board.board[randomSpace] = computer.marker
+        return randomSpace
     }
     
     private func populateWaysToWin() -> [[Int]] {
