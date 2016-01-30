@@ -29,6 +29,7 @@
 		69699F971C4DD55700508478 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F961C4DD55700508478 /* Deck.swift */; };
 		69699F9A1C4DDA6300508478 /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F991C4DDA6300508478 /* PlayingCard.swift */; };
 		69699F9C1C4DDA8300508478 /* PlayingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */; };
+		697503501C5CA21A005A4217 /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6975034F1C5CA21A005A4217 /* README.rtf */; };
 		698C3BF41C573B1700A6CA3B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C3BF31C573B1700A6CA3B /* SettingsVC.swift */; };
 		69BB54A91C59D6DA003BA2F6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BB54A81C59D6DA003BA2F6 /* Launch Screen.storyboard */; };
 		69CEFA911C5088370062DD61 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CEFA901C5088370062DD61 /* Helper.swift */; };
@@ -80,6 +81,7 @@
 		69699F961C4DD55700508478 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		69699F991C4DDA6300508478 /* PlayingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCard.swift; sourceTree = "<group>"; };
 		69699F9B1C4DDA8300508478 /* PlayingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingCardDeck.swift; sourceTree = "<group>"; };
+		6975034F1C5CA21A005A4217 /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = SOURCE_ROOT; };
 		698C3BF31C573B1700A6CA3B /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		69BB54A81C59D6DA003BA2F6 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../Launch Screen.storyboard"; sourceTree = "<group>"; };
 		69CEFA901C5088370062DD61 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				69BB54A81C59D6DA003BA2F6 /* Launch Screen.storyboard */,
 				69699F631C4DC0CC00508478 /* AppDelegate.swift */,
+				6975034F1C5CA21A005A4217 /* README.rtf */,
 				69699F6F1C4DC0CC00508478 /* Info.plist */,
 			);
 			name = Extra;
@@ -314,6 +317,7 @@
 			files = (
 				69BB54A91C59D6DA003BA2F6 /* Launch Screen.storyboard in Resources */,
 				6939869E1C5993EB00AE71B6 /* Main.storyboard in Resources */,
+				697503501C5CA21A005A4217 /* README.rtf in Resources */,
 				69699F6B1C4DC0CC00508478 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
