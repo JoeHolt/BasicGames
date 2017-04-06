@@ -262,44 +262,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="exW-OI-RAN">
-                                        <rect key="frame" x="0.0" y="427.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="exW-OI-RAN" id="9EC-w1-7CO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDE-4i-EI4">
-                                                    <rect key="frame" x="8" y="11" width="87" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="S6g-iw-Gu1" kind="show" id="FUx-F0-f2D"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="3" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MWU-xw-en6">
-                                        <rect key="frame" x="0.0" y="471.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="MWU-xw-en6" id="8n5-SA-dV3">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Difficulty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-PS-dhY">
-                                                    <rect key="frame" x="8" y="11" width="69" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="S6g-iw-Gu1" kind="show" id="EP2-Zj-BDq"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -321,8 +283,6 @@
                         <outletCollection property="nonSelectableCells" destination="d7u-gZ-wET" collectionClass="NSMutableArray" id="1Cx-1l-Wyg"/>
                         <outletCollection property="nonSelectableCells" destination="QgI-Cr-CUd" collectionClass="NSMutableArray" id="myR-XM-5RY"/>
                         <outletCollection property="nonSelectableCells" destination="pmY-Sg-6a9" collectionClass="NSMutableArray" id="Q6r-UA-jrS"/>
-                        <outletCollection property="selectableCells" destination="exW-OI-RAN" collectionClass="NSMutableArray" id="pce-MF-EFf"/>
-                        <outletCollection property="selectableCells" destination="MWU-xw-en6" collectionClass="NSMutableArray" id="y65-XS-S9q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pug-js-MqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -871,7 +831,4 @@
     <resources>
         <image name="WarCard" width="350" height="622"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="oiQ-cp-n7l"/>
-    </inferredMetricsTieBreakers>
 </document>

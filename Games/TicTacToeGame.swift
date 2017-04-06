@@ -32,13 +32,13 @@ class TicTacToeGame: NSObject {
         
     }
     
-    internal func computerMakeRandomMove(computer: TicTacToePlayer) -> Int {
+    internal func computerMakeRandomMove(_ computer: TicTacToePlayer) -> Int {
         let randomSpace = board.randomEmptySpace()
         board.board[randomSpace] = computer.marker
         return randomSpace
     }
     
-    private func populateWaysToWin() -> [[Int]] {
+    fileprivate func populateWaysToWin() -> [[Int]] {
         //creates an array of values to be callde on checkForWinner
         //For three by three tic tac toe(Only version this app will handle)
         return [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]

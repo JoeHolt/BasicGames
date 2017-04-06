@@ -21,8 +21,8 @@ class Game: NSObject {
         self.segue = segue
     }
     
-    internal func performSegue(sender: UITableViewController) {
-        sender.performSegueWithIdentifier(segue, sender: sender)
+    internal func performSegue(_ sender: UITableViewController) {
+        sender.performSegue(withIdentifier: segue, sender: sender)
     }
     
 }

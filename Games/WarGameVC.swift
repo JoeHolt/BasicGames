@@ -11,7 +11,7 @@ import UIKit
 
 
 protocol WarGameVCDelegate {
-    func warGameVCDidFinish(sender: UIViewController)
+    func warGameVCDidFinish(_ sender: UIViewController)
 }
 
 class WarGameVC: UIViewController {
@@ -25,7 +25,7 @@ class WarGameVC: UIViewController {
     @IBOutlet weak var Card1: UIButton! //Top Left
     @IBOutlet weak var Card2: UIButton! //Top Right
     @IBOutlet weak var Card3: UIButton! //Bottom Right
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     var BGViews = [UIView]()
     var delegate: WarGameVCDelegate? = nil
     var players = [WarPlayer]()
@@ -50,14 +50,14 @@ class WarGameVC: UIViewController {
         setUp()
     }
     
-    @IBAction func player1ButtonTapped(sender: UIButton) {
+    @IBAction func player1ButtonTapped(_ sender: UIButton) {
         if player1.cardsLeft > 0 {
             print("s")
             for player in players {
                 print(player.name)
             }
             print("e")
-            sender.userInteractionEnabled = false
+            sender.isUserInteractionEnabled = false
             flipCardsUI(){
                 () in
                 runAfterDelay(0.3) {
@@ -67,11 +67,11 @@ class WarGameVC: UIViewController {
         }
     }
     
-    func flipCardsUI(completion: () -> Void) {
+    func flipCardsUI(_ completion: @escaping () -> Void) {
         for i in 0..<players.count {
             var delay = (idleTime + Double(Double(i - 1) * 0.5))
             if i == 0 { delay = 0 } //If it is the first card, flip imideataly
-            dispatch_after(GSDSeconds(seconds: delay), dispatch_get_main_queue()) {
+            DispatchQueue.main.asyncAfter(deadline: GSDSeconds(seconds: delay)) {
                 self.flipCardHelper(self.players[i])
                 if i == (self.players.count - 1) { completion() }
             }
@@ -80,13 +80,13 @@ class WarGameVC: UIViewController {
     
     
     
-    func flipCardHelper(player: WarPlayer) {
+    func flipCardHelper(_ player: WarPlayer) {
         if let card = player.personalDeck.drawRandomCard() {
             print("Fliping: \(card.contents)")
             player.currentCard = card as! PlayingCard
-            UIView.transitionWithView(player.UICard, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: {
-                    player.UICard.setBackgroundImage(UIImage(named: "CardFront"), forState: .Normal)
-                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(card.contents)", fontSize: 70.0), forState: .Normal)
+            UIView.transition(with: player.UICard, duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromLeft, animations: {
+                    player.UICard.setBackgroundImage(UIImage(named: "CardFront"), for: UIControlState())
+                    player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(card.contents)", fontSize: 70.0), for: UIControlState())
                 }, completion: nil)
             
         }
@@ -116,7 +116,7 @@ class WarGameVC: UIViewController {
             
             runAfterDelay((idleTime/1.5) * 2.1) {
                 self.playersAtWar = roundWinner
-                self.performSegueWithIdentifier("warDetailSegue", sender: self)
+                self.performSegue(withIdentifier: "warDetailSegue", sender: self)
             }
             
         } else {
@@ -127,13 +127,13 @@ class WarGameVC: UIViewController {
         checkForGameWinner()
     }
     
-    func cardExpandAnimation(player: WarPlayer) {
+    func cardExpandAnimation(_ player: WarPlayer) {
         //Updates UI to show winner
-        UIView.animateWithDuration(idleTime/1.5, delay: 0.0, options: .CurveEaseIn, animations: {
-            player.UICard.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        UIView.animate(withDuration: idleTime/1.5, delay: 0.0, options: .curveEaseIn, animations: {
+            player.UICard.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             }, completion: { finished in
-                UIView.animateWithDuration(self.idleTime/1.5, delay: 0.0, options: .CurveEaseOut, animations: {
-                    player.UICard.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                UIView.animate(withDuration: self.idleTime/1.5, delay: 0.0, options: .curveEaseOut, animations: {
+                    player.UICard.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     }, completion: { finished in
                         self.cardExpandFinished()
                 })
@@ -141,20 +141,20 @@ class WarGameVC: UIViewController {
     }
     func cardExpandFinished() {
         for card in self.cards {
-            UIView.transitionWithView(card, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
+            UIView.transition(with: card, duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, animations: {
                 if card == self.Card0 {
-                    card.setBackgroundImage(self.getUserCardImage(), forState: .Normal)
+                    card.setBackgroundImage(self.getUserCardImage(), for: UIControlState())
                 } else {
-                    card.setBackgroundImage(UIImage(named: "WarCard"), forState: .Normal)
+                    card.setBackgroundImage(UIImage(named: "WarCard"), for: UIControlState())
                 }
                 for player in self.players {
-                    if self.defaults.boolForKey("enableCardsLeft") {
-                        player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+                    if self.defaults.bool(forKey: "enableCardsLeft") {
+                        player.UICard.setAttributedTitle(self.makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), for: UIControlState())
                     } else {
-                        player.UICard.setAttributedTitle(self.makeAtributtedTitle("", fontSize: 20.0), forState: .Normal)
+                        player.UICard.setAttributedTitle(self.makeAtributtedTitle("", fontSize: 20.0), for: UIControlState())
                     }
                 }
-                self.Card0.userInteractionEnabled = true
+                self.Card0.isUserInteractionEnabled = true
                 for player in self.players {
                     if player.personalDeck.cards.count == 0 {
                         self.players.removeObject(player)
@@ -168,44 +168,44 @@ class WarGameVC: UIViewController {
         for player in players {
             if player.personalDeck.cards.count == 0 {
                 if player.UICard == Card0 {
-                    UIView.transitionWithView(player.UICard, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
-                        player.UICard.setImage(self.getUserCardImage(), forState: .Normal)
+                    UIView.transition(with: player.UICard, duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, animations: {
+                        player.UICard.setImage(self.getUserCardImage(), for: UIControlState())
                         self.players.removeObject(player)
                         }, completion: nil)
                 } else {
-                    UIView.transitionWithView(player.UICard, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight, animations: {
-                        player.UICard.setImage(UIImage(named: "WarCard"), forState: .Normal)
+                    UIView.transition(with: player.UICard, duration: 0.5, options: UIViewAnimationOptions.transitionFlipFromRight, animations: {
+                        player.UICard.setImage(UIImage(named: "WarCard"), for: UIControlState())
                         }, completion: nil)
                 }
                 player.UICard.alpha = 0.5
-                player.UICard.userInteractionEnabled = false
+                player.UICard.isUserInteractionEnabled = false
                 if player.tag == 4 { // User
-                    let ac = UIAlertController(title: "You Lose!", message: "You lost! You you like to play again?", preferredStyle: UIAlertControllerStyle.Alert)
-                    ac.addAction(UIAlertAction(title: "No", style: .Cancel, handler: {
+                    let ac = UIAlertController(title: "You Lose!", message: "You lost! You you like to play again?", preferredStyle: UIAlertControllerStyle.alert)
+                    ac.addAction(UIAlertAction(title: "No", style: .cancel, handler: {
                         UIAlertAction in
                         self.delegate?.warGameVCDidFinish(self)
                     }))
-                    ac.addAction(UIAlertAction(title: "Yes", style: .Default, handler: {
+                    ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
                         UIAlertAction in
                         self.restartGame()
                     }))
-                    presentViewController(ac, animated: true, completion: nil)
+                    present(ac, animated: true, completion: nil)
                 }
             } else {
                 if let winner = game.checkForGameWinner(players) {
                     if winner == player1 {
-                        NSUserDefaults.standardUserDefaults().setInteger((NSUserDefaults.standardUserDefaults().integerForKey("WarWins") + 1), forKey: "WarWins")
-                        let ac = UIAlertController(title: "You Win!", message: "You Won! Would you like to play again?", preferredStyle: UIAlertControllerStyle.Alert)
-                        ac.addAction(UIAlertAction(title: "No", style: .Cancel, handler: {
+                        UserDefaults.standard.set((UserDefaults.standard.integer(forKey: "WarWins") + 1), forKey: "WarWins")
+                        let ac = UIAlertController(title: "You Win!", message: "You Won! Would you like to play again?", preferredStyle: UIAlertControllerStyle.alert)
+                        ac.addAction(UIAlertAction(title: "No", style: .cancel, handler: {
                             UIAlertAction in
                             self.delegate?.warGameVCDidFinish(self)
                             
                         }))
-                        ac.addAction(UIAlertAction(title: "Yes", style: .Default, handler: {
+                        ac.addAction(UIAlertAction(title: "Yes", style: .default, handler: {
                             UIAlertAction in
                             self.restartGame()
                         }))
-                        presentViewController(ac, animated: true, completion: nil)
+                        present(ac, animated: true, completion: nil)
                     }
                 }
             }
@@ -213,7 +213,7 @@ class WarGameVC: UIViewController {
     }
     
     func setUp() {
-        idleTime = defaults.doubleForKey("warIdleTime")
+        idleTime = defaults.double(forKey: "warIdleTime")
         if players.count == 0 {
             createPlayersAndGame()
         }
@@ -234,7 +234,7 @@ class WarGameVC: UIViewController {
     func setUpCards() {
         //Sets up cards with values not avlible in storyboard
         BGViews = [BGView1, BGView2, BGView3, BGView4]
-        Card0.setBackgroundImage(getUserCardImage(), forState: UIControlState.Normal)
+        Card0.setBackgroundImage(getUserCardImage(), for: UIControlState())
         for card in cards {
             card.layer.cornerRadius = 12.0
             card.layer.masksToBounds = true
@@ -244,16 +244,16 @@ class WarGameVC: UIViewController {
             //view.layer.borderWidth = 0.3
         }
         for player in players {
-            if defaults.boolForKey("enableCardsLeft") {
-                player.UICard.setAttributedTitle(makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), forState: .Normal)
+            if defaults.bool(forKey: "enableCardsLeft") {
+                player.UICard.setAttributedTitle(makeAtributtedTitle("\(player.personalDeck.cards.count)", fontSize: 20.0), for: UIControlState())
             } else {
-                player.UICard.setAttributedTitle(makeAtributtedTitle("", fontSize: 20.0), forState: .Normal)
+                player.UICard.setAttributedTitle(makeAtributtedTitle("", fontSize: 20.0), for: UIControlState())
             }
         }
     }
     
     func getUserCardImage() -> UIImage {
-        return UIImage(named: defaults.stringForKey("userCardString")!)!
+        return UIImage(named: defaults.string(forKey: "userCardString")!)!
     }
     
     func restartGame() {
@@ -266,10 +266,10 @@ class WarGameVC: UIViewController {
         viewDidLoad()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "warDetailSegue" {
             var seguePlayers = [WarPlayer]()
-            let destinationVC = segue.destinationViewController as! WarDetailVC
+            let destinationVC = segue.destination as! WarDetailVC
             for i in 0..<playersAtWar.count {
                 let newPlayer = WarPlayer(name: playersAtWar[i].name, UICard: UIButton(), tag: 0)
                 newPlayer.name = playersAtWar[i].name
@@ -286,10 +286,10 @@ class WarGameVC: UIViewController {
             playedCards.removeAll()
         }
     }
-    func makeAtributtedTitle(text: String, fontSize: CGFloat) -> NSMutableAttributedString {
-        let attrs = [NSFontAttributeName: UIFont.systemFontOfSize(fontSize, weight: UIFontWeightLight)]
+    func makeAtributtedTitle(_ text: String, fontSize: CGFloat) -> NSMutableAttributedString {
+        let attrs = [NSFontAttributeName: UIFont.systemFont(ofSize: fontSize, weight: UIFontWeightLight)]
         let title = NSMutableAttributedString(string: text, attributes: attrs)
-        title.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackColor(), range: NSMakeRange(0, title.length))
+        title.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: NSMakeRange(0, title.length))
         return title
         
     }

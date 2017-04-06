@@ -9,9 +9,9 @@
 import UIKit
 
 enum GameType {
-    case HumanVsHuamn
-    case HumanVsComputer
-    case ComputerVsHuman
+    case humanVsHuamn
+    case humanVsComputer
+    case computerVsHuman
 }
 
 class SettingsDetailVC: UITableViewController {
@@ -19,7 +19,7 @@ class SettingsDetailVC: UITableViewController {
     var cards = [String]()
     var gameTypes = [String]()
     var difficulties = [String]()
-    var defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = UserDefaults.standard
     var displayType = String()
     var displayData = [String]()
 
@@ -44,16 +44,16 @@ class SettingsDetailVC: UITableViewController {
         
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayData.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch displayType {
         case "Cards":
             return setUpCellForCards(indexPath)
@@ -68,29 +68,29 @@ class SettingsDetailVC: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch displayType {
         case "Cards":
-            defaults.setObject(cards[indexPath.row].removeWhiteSpaces(), forKey: "userCardString")
+            defaults.set(cards[indexPath.row].removeWhiteSpaces(), forKey: "userCardString")
         case "GameTypes":
-            defaults.setObject(cards[indexPath.row].removeWhiteSpaces(), forKey: "ticGameType")
+            defaults.set(cards[indexPath.row].removeWhiteSpaces(), forKey: "ticGameType")
         case "Dif":
-            defaults.setObject(cards[indexPath.row].removeWhiteSpaces(), forKey: "ticDif")
+            defaults.set(cards[indexPath.row].removeWhiteSpaces(), forKey: "ticDif")
         default:
             print("Error")
         }
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    func setUpCellBasic(data: [String], indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("basicCell", forIndexPath: indexPath)
+    func setUpCellBasic(_ data: [String], indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell", for: indexPath)
         let cellLabel = cell.viewWithTag(1) as! UILabel //Label
         cellLabel.text = data[indexPath.row]
         return cell
     }
     
-    func setUpCellForCards(indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cardCell", forIndexPath: indexPath)
+    func setUpCellForCards(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath)
         let cellLabel = cell.viewWithTag(2) as! UILabel //Label
         let cellImage = cell.viewWithTag(3) as! UIImageView //Image
         cellImage.image = UIImage(named: cards[indexPath.row].removeWhiteSpaces())

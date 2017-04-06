@@ -11,17 +11,17 @@ import UIKit
 class Deck: NSObject {
     var cards = [Card]()
     
-    internal func addCard(card: Card, atTop: Bool) {
+    internal func addCard(_ card: Card, atTop: Bool) {
         if atTop {
-            cards.insert(card, atIndex: 0)
+            cards.insert(card, at: 0)
         } else {
             cards.append(card)
         }
     }
-    internal func addCard(card: Card) {
+    internal func addCard(_ card: Card) {
         cards.append(card)
     }
-    internal func addCards(cards: [Card]) {
+    internal func addCards(_ cards: [Card]) {
         for card in cards {
             addCard(card)
         }
@@ -31,7 +31,7 @@ class Deck: NSObject {
         if cards.count > 0 {
             let rand = arc4random_uniform(UInt32(cards.count))
             let randomCard = cards[Int(rand)]
-            cards.removeAtIndex(Int(rand))
+            cards.remove(at: Int(rand))
             return randomCard
         } else {
             return nil

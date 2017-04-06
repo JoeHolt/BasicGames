@@ -9,9 +9,9 @@
 import UIKit
 
 enum BoardMarker {
-    case N //Nothing in space
-    case X //X in space
-    case O //0 in space
+    case n //Nothing in space
+    case x //X in space
+    case o //0 in space
 }
 
 class TicTacToeBoard: Board {
@@ -25,30 +25,30 @@ class TicTacToeBoard: Board {
         super.init(width: width, height: height)
         
         for _ in 0..<self.boardArea {
-            board.append(.N)
+            board.append(.n)
         }
     }
     
-    internal func markerForIndex(index: Int) -> BoardMarker {
+    internal func markerForIndex(_ index: Int) -> BoardMarker {
         return board[index]
     }
     
-    internal func setMarkerAtIndex(index: Int, markType: BoardMarker) {
+    internal func setMarkerAtIndex(_ index: Int, markType: BoardMarker) {
         board[index] = markType
     }
     
-    internal func removeMarkerAtIndex(index: Int) {
-        board[index] = .N
+    internal func removeMarkerAtIndex(_ index: Int) {
+        board[index] = .n
     }
     
     internal func randomEmptySpace() -> Int {
         var indexsOfEmptySpace = [Int]()
         var index = 0
         for space in board {
-            if space == .N {
+            if space == .n {
                 indexsOfEmptySpace.append(index)
             }
-            index++
+            index += 1
         }
         return indexsOfEmptySpace.randomObject()!
     }
@@ -60,13 +60,13 @@ class TicTacToeBoard: Board {
     internal func restart() {
         board.removeAll()
         for _ in 0..<self.boardArea {
-            board.append(.N)
+            board.append(.n)
         }
     }
     
-    internal func equalityAtIndexs(indexs: [Int]) -> (Bool) {
+    internal func equalityAtIndexs(_ indexs: [Int]) -> (Bool) {
         for i in indexs {
-            if board[i] == .N {
+            if board[i] == .n {
                 return false
             }
             if board[i] != board[indexs[0]] {
@@ -80,20 +80,20 @@ class TicTacToeBoard: Board {
     }
     
     internal func boardIsFull() -> Bool {
-        if board.contains(.N) {
+        if board.contains(.n) {
             return false
         } else {
             return true
         }
     }
     
-    internal func stringForMarker(marker: BoardMarker) -> String {
+    internal func stringForMarker(_ marker: BoardMarker) -> String {
         switch marker {
-        case .O:
+        case .o:
             return "O"
-        case .X:
+        case .x:
             return "X"
-        case .N:
+        case .n:
             return ""
         }
     }

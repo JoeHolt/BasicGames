@@ -14,14 +14,14 @@ class GameSelectVC: UITableViewController {
     var war: Game!
     var ticTacToe: Game!
     var settings: Game!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initalLoad()
-        war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: defaults.integerForKey("WarWins"), segue: "warSegue")
-        ticTacToe = Game(name: "Tic Tac Toe", titleImage: UIImage(named: "TicTacToeIcon")!, wins: defaults.integerForKey("TicTacToeWins"), segue: "ticTacToeSegue")
+        war = Game(name: "War", titleImage: UIImage(named: "WarIcon")!, wins: defaults.integer(forKey: "WarWins"), segue: "warSegue")
+        ticTacToe = Game(name: "Tic Tac Toe", titleImage: UIImage(named: "TicTacToeIcon")!, wins: defaults.integer(forKey: "TicTacToeWins"), segue: "ticTacToeSegue")
         settings = Game(name: "Settings", titleImage: UIImage(named: "GearIcon")!, wins: -1, segue: "settingsSegue")
         games.append(war)
         games.append(ticTacToe)
@@ -29,41 +29,41 @@ class GameSelectVC: UITableViewController {
         title = "Choose a Game"
     }
     
-    override func viewWillAppear(animated: Bool) {
-        ticTacToe.wins = defaults.integerForKey("TicTacToeWins")
-        war.wins = defaults.integerForKey("WarWins")
+    override func viewWillAppear(_ animated: Bool) {
+        ticTacToe.wins = defaults.integer(forKey: "TicTacToeWins")
+        war.wins = defaults.integer(forKey: "WarWins")
         tableView.reloadData()
     }
     
     func setUp() {
-        navigationController?.navigationBar.tintColor = UIColor.purpleColor()
+        navigationController?.navigationBar.tintColor = UIColor.purple
         title = "Choose a Game!"
     }
     
     func initalLoad() {
-        let firstRun = NSUserDefaults.standardUserDefaults().boolForKey("firstRun") as Bool
+        let firstRun = UserDefaults.standard.bool(forKey: "firstRun") as Bool
         if !firstRun {
             //First Run
-            defaults.setInteger(0, forKey: "WarWins")
-            defaults.setInteger(0, forKey: "TicTacToeWins")
-            defaults.setDouble(0.5, forKey: "warIdleTime")
-            defaults.setObject("Player 1", forKey: "ticPlayer1Name")
-            defaults.setObject("Player 2", forKey: "ticPlayer2Name")
-            defaults.setDouble(0.5, forKey: "ticWaitTime")
-            defaults.setObject("WarCard", forKey: "userCardString")
-            defaults.setBool(true, forKey: "enableCardsLeft")
-            defaults.setObject("Human Vs Computer", forKey: "ticGameType")
-            defaults.setObject("Hard", forKey: "ticDif")
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstRun")
+            defaults.set(0, forKey: "WarWins")
+            defaults.set(0, forKey: "TicTacToeWins")
+            defaults.set(0.5, forKey: "warIdleTime")
+            defaults.set("Player 1", forKey: "ticPlayer1Name")
+            defaults.set("Player 2", forKey: "ticPlayer2Name")
+            defaults.set(0.5, forKey: "ticWaitTime")
+            defaults.set("WarCard", forKey: "userCardString")
+            defaults.set(true, forKey: "enableCardsLeft")
+            defaults.set("Human Vs Computer", forKey: "ticGameType")
+            defaults.set("Hard", forKey: "ticDif")
+            UserDefaults.standard.set(true, forKey: "firstRun")
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("GameCell")!
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "GameCell")!
         let game = games[indexPath.row]
         let titleLabel = cell.viewWithTag(2) as! UILabel //Title Label in Cell
         let subTitle = cell.viewWithTag(3) as! UILabel //Subheading in Cell
@@ -77,15 +77,15 @@ class GameSelectVC: UITableViewController {
         image.image = game.titleImage
         image.layer.cornerRadius = 8
         image.layer.masksToBounds = true
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         games[indexPath.row].performSegue(self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     }
 

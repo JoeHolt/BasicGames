@@ -19,7 +19,7 @@ class SettingsVC: UITableViewController, UITextFieldDelegate {
     @IBOutlet var nonSelectableCells: [UITableViewCell]!
     @IBOutlet var selectableCells: [UITableViewCell]!
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,10 @@ class SettingsVC: UITableViewController, UITextFieldDelegate {
         setUp()
     }
     
-    @IBAction func warGameIdleTV(sender: UITextView) {
+    @IBAction func warGameIdleTV(_ sender: UITextView) {
         if let number = Double(sender.text) {
             //String is a double
-            defaults.setDouble(number, forKey: "warIdleTime")
+            defaults.set(number, forKey: "warIdleTime")
         } else {
             //String is not double
             sender.text = ""
@@ -38,34 +38,34 @@ class SettingsVC: UITableViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func warEnableCardsLeft(sender: UISwitch) {
-        if sender.on {
-            defaults.setBool(true, forKey: "enableCardsLeft")
+    @IBAction func warEnableCardsLeft(_ sender: UISwitch) {
+        if sender.isOn {
+            defaults.set(true, forKey: "enableCardsLeft")
         } else {
-            defaults.setBool(false, forKey: "enableCardsLeft")
+            defaults.set(false, forKey: "enableCardsLeft")
         }
     }
     
-    @IBAction func ticPlayer1NameTVDidFinish(sender: UITextField) {
+    @IBAction func ticPlayer1NameTVDidFinish(_ sender: UITextField) {
         if sender.text == "" {
-            defaults.setObject("Player 1", forKey: "ticPlayer1Name")
+            defaults.set("Player 1", forKey: "ticPlayer1Name")
         } else {
-            defaults.setObject(sender.text, forKey: "ticPlayer1Name")
+            defaults.set(sender.text, forKey: "ticPlayer1Name")
         }
     }
     
-    @IBAction func ticPlayer2NameTVDidFinish(sender: UITextField) {
+    @IBAction func ticPlayer2NameTVDidFinish(_ sender: UITextField) {
         if sender.text == "" {
-            defaults.setObject("Player 2", forKey: "ticPlayer2Name")
+            defaults.set("Player 2", forKey: "ticPlayer2Name")
         } else {
-            defaults.setObject(sender.text, forKey: "ticPlayer2Name")
+            defaults.set(sender.text, forKey: "ticPlayer2Name")
         }
     }
     
-    @IBAction func ticWaitTimeDidFinish(sender: UITextField) {
+    @IBAction func ticWaitTimeDidFinish(_ sender: UITextField) {
         if let number = Double(sender.text!) {
             //String is a double
-            defaults.setDouble(number, forKey: "ticWaitTime")
+            defaults.set(number, forKey: "ticWaitTime")
         } else {
             //String is not double
             sender.text = ""
@@ -73,22 +73,22 @@ class SettingsVC: UITableViewController, UITextFieldDelegate {
     }
     
     func setUp() {
-        warIdleTimeTV.placeholder = String(defaults.doubleForKey("warIdleTime"))
-        ticPlayer1Name.placeholder = defaults.objectForKey("ticPlayer1Name") as? String
-        ticPlayer2Name.placeholder = defaults.objectForKey("ticPlayer2Name") as? String
-        ticWaitTime.placeholder = String(defaults.doubleForKey("ticWaitTime"))
+        warIdleTimeTV.placeholder = String(defaults.double(forKey: "warIdleTime"))
+        ticPlayer1Name.placeholder = defaults.object(forKey: "ticPlayer1Name") as? String
+        ticPlayer2Name.placeholder = defaults.object(forKey: "ticPlayer2Name") as? String
+        ticWaitTime.placeholder = String(defaults.double(forKey: "ticWaitTime"))
         self.warIdleTimeTV.delegate = self
         self.ticPlayer1Name.delegate = self
         self.ticPlayer2Name.delegate = self
         self.ticWaitTime.delegate = self
         
         for cell in nonSelectableCells {
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
         }
         for cell in selectableCells {
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         }
-        if defaults.boolForKey("enableCardsLeft") {
+        if defaults.bool(forKey: "enableCardsLeft") {
             enableCardsLeftSW.setOn(true, animated: true)
         } else {
             enableCardsLeftSW.setOn(false, animated: true)
@@ -96,14 +96,14 @@ class SettingsVC: UITableViewController, UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController as! SettingsDetailVC
-        switch sender!.tag {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! SettingsDetailVC
+        switch (sender! as AnyObject).tag {
         case 1: //warCard
             destinationVC.displayType = "Cards"
         case 2: //TicTacToe game wype

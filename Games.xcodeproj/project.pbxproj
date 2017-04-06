@@ -277,15 +277,18 @@
 					69699F5F1C4DC0CC00508478 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = G89T23PT2Q;
+						LastSwiftMigration = 0820;
 					};
 					69699F731C4DC0CC00508478 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = G89T23PT2Q;
+						LastSwiftMigration = 0820;
 						TestTargetID = 69699F5F1C4DC0CC00508478;
 					};
 					69699F7E1C4DC0CC00508478 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = G89T23PT2Q;
+						LastSwiftMigration = 0820;
 						TestTargetID = 69699F5F1C4DC0CC00508478;
 					};
 				};
@@ -502,6 +505,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -515,6 +519,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -526,6 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.GamesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Games.app/Games";
 			};
 			name = Debug;
@@ -538,6 +544,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.GamesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Games.app/Games";
 			};
 			name = Release;
@@ -549,6 +556,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.GamesUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Games;
 				USES_XCTRUNNER = YES;
 			};
@@ -561,6 +569,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joe-Holt.GamesUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Games;
 				USES_XCTRUNNER = YES;
 			};

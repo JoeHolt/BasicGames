@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 extension String {
-    func replace(string: String, replacment: String) -> String {
-        return self.stringByReplacingOccurrencesOfString(string, withString: replacment, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    func replace(_ string: String, replacment: String) -> String {
+        return self.replacingOccurrences(of: string, with: replacment, options: NSString.CompareOptions.literal, range: nil)
     }
     func removeWhiteSpaces() -> String {
         return self.replace(" ", replacment: "")
@@ -19,12 +19,12 @@ extension String {
 }
 extension Array where Element: Equatable {
     //Simple function to remove object based on name
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+    mutating func removeObject(_ object : Iterator.Element) {
+        if let index = self.index(of: object) {
+            self.remove(at: index)
         }
     }
-    func randomObject() -> Generator.Element? {
+    func randomObject() -> Iterator.Element? {
         if self.count > 0 {
             let randomInt: Int = Int(arc4random_uniform(UInt32(self.count)))
             return self[randomInt]
@@ -34,15 +34,15 @@ extension Array where Element: Equatable {
     }
 }
 
-func GSDSeconds(seconds delay: Double) -> dispatch_time_t {
-    return dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+func GSDSeconds(seconds delay: Double) -> DispatchTime {
+    return DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 }
-func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, dispatch_get_main_queue(), block)
+func runAfterDelay(_ delay: TimeInterval, block: @escaping ()->()) {
+    let time = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+    DispatchQueue.main.asyncAfter(deadline: time, execute: block)
 }
-func makeSimpleAlertView(title: String, message: String, target: UIViewController) {
-    let ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-    ac.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
-    target.presentViewController(ac, animated: true, completion: nil)
+func makeSimpleAlertView(_ title: String, message: String, target: UIViewController) {
+    let ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    ac.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.cancel, handler: nil))
+    target.present(ac, animated: true, completion: nil)
 }
